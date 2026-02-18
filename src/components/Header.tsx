@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Menu, X, Home, Phone } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logo from "@/assets/logo.png"; // <-- Make sure logo.png is inside your assets folder
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -16,15 +17,14 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:px-8">
+        
         {/* Logo */}
-        <a href="#home" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-            <Home className="w-5 h-5 text-primary-foreground" />
-          </div>
-          <div className="leading-tight">
-            <span className="font-heading font-bold text-lg text-foreground">Reno Guys</span>
-            <span className="block text-xs text-muted-foreground font-body">Overstrand</span>
-          </div>
+        <a href="#home" className="flex items-center">
+        <img 
+          src={logo} 
+          alt="Reno Guys Logo" 
+          className="h-16 md:h-20 w-auto object-contain"
+        />
         </a>
 
         {/* Desktop Nav */}
