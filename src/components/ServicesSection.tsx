@@ -21,6 +21,7 @@ const services = [
   { icon: Hammer, label: "Paving" },
   { icon: Droplets, label: "Plumbing Repair Services" },
   { icon: Lightbulb, label: "Electrical Repair Services" },
+  { icon: Hammer, label: "Epoxy Flooring" }, 
 ];
 
 const ServicesSection = () => {

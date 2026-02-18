@@ -75,6 +75,7 @@ const Footer = () => {
             Powered by{" "}
             <a
               href="https://krayon.co.za"
+              
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors font-medium"
