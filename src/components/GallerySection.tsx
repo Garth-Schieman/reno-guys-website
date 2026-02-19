@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Adjust this path if your component is deeper inside folders
+// Helper for asset paths
 const getAssetUrl = (name: string) => {
   return new URL(`../assets/${name}`, import.meta.url).href;
 };
@@ -17,51 +17,59 @@ const categories: Category[] = [
     name: "Painting",
     cover: getAssetUrl("painting1.jpg"),
     images: [
-      "painting1.jpg",
-      "painting2.jpg",
-      "painting3.jpg",
-      "painting4.jpg",
-      "painting5.jpg",
-      "painting6.jpg",
-      "painting7.jpg",
+      getAssetUrl("painting1.jpg"),
+      getAssetUrl("painting2.jpg"),
+      getAssetUrl("painting3.jpg"),
+      getAssetUrl("painting4.jpg"),
+      getAssetUrl("painting5.jpg"),
+      getAssetUrl("painting6.jpg"),
+      getAssetUrl("painting7.jpg"),
     ],
   },
   {
-    name: "Roofing",
+    name: "Decking",
+    cover: getAssetUrl("decking1.jpg"),
+    images: [
+      getAssetUrl("decking1.jpg"),
+    ],
+  },
+  {
+    name: "Waterproofing & Roof Painting",
     cover: getAssetUrl("roofing1.jpg"),
     images: [
-      "roofing1.jpg",
-      "roofing2.jpg",
-      "roofing3.jpg",
-      "roofing4.jpg",
-      "roofing5.jpg",
-      "roofing6.jpg",
-      "roofing7.jpg",
+      getAssetUrl("roofing1.jpg"),
+      getAssetUrl("roofing2.jpg"),
+      getAssetUrl("roofing3.jpg"),
+      getAssetUrl("roofing4.jpg"),
+      getAssetUrl("roofing5.jpg"),
+      getAssetUrl("roofing6.jpg"),
+      getAssetUrl("roofing7.jpg"),
+    ],
+  },
+  {
+    name: "Laminate & Vinyl Installation",
+    cover: getAssetUrl("laminate1.jpg"),
+    images: [
+      getAssetUrl("laminate1.jpg"),
+      getAssetUrl("laminate2.jpg"),
     ],
   },
   {
     name: "Paving",
     cover: getAssetUrl("paving1.jpg"),
     images: [
-      "paving1.jpg",
-      "paving2.jpg",
-      "paving3.jpg",
-      "paving4.jpg",
+      getAssetUrl("paving1.jpg"),
+      getAssetUrl("paving2.jpg"),
+      getAssetUrl("paving3.jpg"),
+      getAssetUrl("paving4.jpg"),
     ],
   },
   {
-    name: "Flooring",
-    cover: getAssetUrl("flooring1.jpg"),
-    images: [
-      "flooring1.jpg",
-      "flooring2.jpg",
-      "flooring3.jpg",
-    ],
-  },
-  {
-    name: "Kitchen",
+    name: "Kitchen Renovations",
     cover: getAssetUrl("kitchen1.jpg"),
-    images: ["kitchen1.jpg"],
+    images: [
+      getAssetUrl("kitchen1.jpg"),
+    ],
   },
 ];
 
@@ -81,7 +89,7 @@ const GallerySection = () => {
           </h2>
         </div>
 
-        {/* CATEGORY FOLDERS */}
+        {/* CATEGORY GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category, i) => (
             <motion.div
@@ -100,7 +108,7 @@ const GallerySection = () => {
               />
 
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <h3 className="text-white text-xl font-semibold tracking-wide">
+                <h3 className="text-white text-xl font-semibold tracking-wide text-center px-4">
                   {category.name}
                 </h3>
               </div>
@@ -108,7 +116,7 @@ const GallerySection = () => {
           ))}
         </div>
 
-        {/* MODAL WITH MASONRY */}
+        {/* MODAL */}
         <AnimatePresence>
           {activeCategory && (
             <motion.div
@@ -116,6 +124,11 @@ const GallerySection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              onClick={(e) => {
+                if (e.target === e.currentTarget) {
+                  setActiveCategory(null);
+                }
+              }}
             >
               <motion.div
                 initial={{ scale: 0.95 }}
@@ -147,7 +160,7 @@ const GallerySection = () => {
                         className="break-inside-avoid rounded-xl overflow-hidden shadow-md"
                       >
                         <img
-                          src={getAssetUrl(img)}
+                          src={img}
                           alt={activeCategory.name}
                           className="w-full object-cover rounded-xl hover:scale-105 transition-transform duration-500 cursor-pointer"
                           loading="lazy"
